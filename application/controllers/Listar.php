@@ -51,6 +51,13 @@ class Listar extends CI_Controller {
         $this->load->view('listar_form',$dados);
 	}
 
-	public function deletar(){		
+	public function deletar(){
+        if ($this->uri->segment(3) === FALSE){
+            $id = NULL;
+        }else{
+            $id = $this->uri->segment(3);
+            $this->usuarios_model->deletar($id);
+        }
+        $this->load->view('listar');
 	}
 }
