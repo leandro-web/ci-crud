@@ -23,11 +23,32 @@ class Listar extends CI_Controller {
             );
         	$this->usuarios_model->cadastrar($dados);
         }	
-        $this->load->view('listar_form');
+        $dados = array(
+        	'acao' => 1
+        );
+        $this->load->view('listar_form',$dados);
 	}
 
-	public function editar(){		
-        $this->load->view('listar_form');
+	public function editar(){
+		if ($this->uri->segment(3) === FALSE){
+            $id = NULL;
+        }else{
+            $id = $this->uri->segment(3);
+        }
+
+		if(isset($_POST["confirma"]) && $_POST["confirma"] == 'ok'){
+			$dados = array(
+			    'id' => $id,
+                'nome' => $_POST["nome"],
+                'idade' => $_POST["idade"]
+            );
+        	$this->usuarios_model->editar($dados);
+        }
+        $dados = array(
+        	'acao' => 2,
+        	'usuario' => $this->usuarios_model->item($id)
+        );
+        $this->load->view('listar_form',$dados);
 	}
 
 	public function deletar(){		

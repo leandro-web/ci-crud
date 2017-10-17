@@ -33,7 +33,6 @@
             	</tbody>
     		</table>
     	</div>
-	</div>
-	<script src="<?php echo base_url('assets/lib/bootstrap/js/bootstrap.js'); ?> "></script>
+	</div>	
 </body>
 </html>
